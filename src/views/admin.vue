@@ -70,7 +70,7 @@
                            </router-link>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" @click="logout">
                                   <i class="fa fa-power-off"></i>
                                 <span>Logout</span>
                             </a>
@@ -95,7 +95,7 @@
 <script>
 // @ is an alias to /src
 
-
+import {fb} from '../firebase';
 
 export default {
   name: "admin",
@@ -107,6 +107,16 @@ export default {
     closeMenu() {
        //$
        (".page-wrapper").toggleClass("toggled");
+    },
+    logout() {
+        fb.auth().signOut()
+        .then(() => {
+           this.$router.replace('/');
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     }
   }
 };
