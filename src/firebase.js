@@ -14,4 +14,5 @@
   };
   // Initialize Firebase
   export const fb = firebase.initializeApp(firebaseConfig);
+  export const db = firebase.firestore();
   firebase.analytics();

@@ -14,6 +14,9 @@ Vue.component('navBar', require('./components/navBar.vue').default);
 
 Vue.config.productionTip = false;
 
+// make sure to set this synchronously immediately after loading Vue
+Vue.config.devtools = true;
+
 let app='';
 
 fb.auth().onAuthStateChanged(function(user) {

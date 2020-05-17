@@ -48,6 +48,7 @@ export default {
 }
 .graphic img {
     max-width: 30vw;
+    max-height:70vh;
     border-radius: 50%;
 }
 
