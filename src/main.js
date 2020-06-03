@@ -7,6 +7,9 @@ window.$ = JQuery;
 import 'popper.js';
 import './assets/app.scss';
 import {fb}   from './firebase'
+import VueFirestore from 'vue-firestore'
+
+Vue.use(VueFirestore)
 
 Vue.component('navBar', require('./components/navBar.vue').default);
 
