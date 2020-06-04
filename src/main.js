@@ -9,8 +9,25 @@ import './assets/app.scss';
 import {fb}   from './firebase'
 import VueFirestore from 'vue-firestore'
 
+require('firebase/firestore')
+Vue.use(VueFirestore, {
+  key: 'id',
+  enumerable: true
+})
+
 Vue.use(VueFirestore)
 
+
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+window.Toast = Toast;
 Vue.component('navBar', require('./components/navBar.vue').default);
 
 
