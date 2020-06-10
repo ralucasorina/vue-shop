@@ -22,7 +22,13 @@
           <div class="product-test">
 
 
-            <h3 class="d-inline-block">Lista preparate</h3>
+            <h3  class="d-inline-block">Lis1ta preparate</h3>
+            <select name="numbers" id="numbers" @change="getAll();">
+              <option  value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
             <button @click="addNew" class="btn btn-primary float-right">Adauga preparat</button>
 
             <div class="table-responsive">
@@ -35,7 +41,7 @@
                       <th>Modificari</th>
                     </tr>
                   </thead>
-
+                   
                   <tbody>
                       <tr v-for="product in products" :key="product">
                         <td>
@@ -191,10 +197,27 @@ export default {
   },
   firestore(){
       return {
-        products: db.collection('meniu1')
+        // products: db.collection('meniu1')
       }
   },
+  
+
   methods:{
+    async getAll() {
+    const all = [];
+    let index = $("#numbers").val();
+    
+      await db.collection('products').doc(`meniu${index}`).collection('preparate').get()
+      .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+        all.push(doc.data());
+        //all[doc.id] = doc.data();
+        });
+      });
+    
+   console.log(all);
+
+},
     deleteImage(img,index){
       let image = fb.storage().refFromURL(img);
       this.product.images.splice(index,1);
